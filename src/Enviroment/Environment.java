@@ -616,6 +616,21 @@ public class Environment {
 
     }
 
+    public int closestTarget(ArrayList<Coord> targets, Squid squid) {
+
+        int value = 30;
+        int positionInList = 0;
+        for (int x = 0; x < targets.size(); x++) {
+
+            if (facts.distance(targets.get(x), squid.head.getCenter()) < value) {
+                value = facts.distance(targets.get(x), squid.head.getCenter());
+                positionInList = x;
+            }
+
+        }
+
+        return positionInList;
+    }
 
     /**
      * This is my second way to pass the time in the environment besides update.
@@ -631,6 +646,55 @@ public class Environment {
         InteractionRequest request = null;
         splitResults = new ArrayList<>();
         replenish();
+
+        if (this.squidArrayList.size() <= 1) {
+            System.out.println("SquidList is gone");
+
+        }
+/*
+        for (Squid squid : this.squidArrayList) {
+            try {
+                SightRequest squidRequest = squid.examineWorld();
+                SightResult squidResult = searchEnvironment(squidRequest, false, true);
+                //get sight, analyze nearby targets, assign out jobs.'
+                int withinView = squidResult.getFoodDirection().size();
+                if (withinView == 1) {
+
+                    for (Tentacle tent : squid.tentacles) {
+
+                        tent.target = squidResult.getFoodDirection().get(0);
+
+                    }
+
+
+                } else if (withinView > 1) { //hand out jobs.
+                    //int counter = 0;
+                    for (Tentacle tent : squid.tentacles) {
+
+                        if (!tent.assignedTarget) {
+                            //assign a target and increment target counter
+                            //assigned target should be the closest.
+                            tent.getTarget(squidResult, squid.getTargetList());
+                        }
+
+                    }
+
+                } else {
+                    //System.out.println("Squid saw nothing");
+                }
+
+                updateSquidPosition(squid);
+
+                if (!squid.state.dead) {
+                    squidBuffer.add(squid);
+                }
+
+            } catch(Exception e) {
+                System.out.println("Error within Squid pathfinding: " + e.getMessage());
+            }
+        }
+
+        */
         for (Squid squid : this.squidArrayList) {
             try {
                 if (squid.tentacles.size() > 0) {
@@ -672,6 +736,8 @@ public class Environment {
             }
         }
 
+
+         
         for (Worm worm : this.wormList) {
             try {
                 try {

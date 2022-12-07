@@ -9,6 +9,7 @@ import Request.SightRequest;
 import Result.SightResult;
 import Technical.IDGen;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -24,7 +25,7 @@ public class Squid {
     final Random random = new Random();
     private final Coord lastSearch = null;
     private final int lastLegSize = 0;
-    public int sight = 0;
+    public int sight = 50;
     //public ArrayList<ArrayList<SquidLeg>> tentacles = new ArrayList<>();
     public ArrayList<Tentacle> tentacles = new ArrayList<>();
     public SquidHead head;
@@ -170,6 +171,32 @@ public class Squid {
          */
 
     }
+
+
+
+    public void assignJobs(Coord[] targets) {
+
+        int toAssignCounter = 0;
+        for (Tentacle tent : this.tentacles) {
+            if (tent.target == null) { // assign a job
+                tent.target = targets[toAssignCounter];
+                toAssignCounter++;
+            }
+        }
+
+    }
+
+    public void assignAllGrabbers(Coord target) {
+
+        for (Tentacle tent: this.tentacles) {
+            tent.moveGrabber(target.x, target.y);
+        }
+
+
+    }
+
+
+
 
     public int testDirectionSet() {
 

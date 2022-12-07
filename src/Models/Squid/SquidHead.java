@@ -24,4 +24,5 @@ public class SquidHead {
     public Coord getCenter() {
         return new Coord(this.x, this.y);
     }
+
 }
