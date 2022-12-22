@@ -637,7 +637,7 @@ public class Environment {
      */
     public void passTime() {
 
-        foodFall();
+        //foodFall();
 
         ArrayList<Cell> cellBuffer = new ArrayList<>();
         ArrayList<Worm> wormBuffer = new ArrayList<>();
@@ -2143,6 +2143,20 @@ public class Environment {
 
     public void replenish() {
 
+        //replenishCells();
+        replenishWorms();
+
+    }
+
+    public void replenishWorms() {
+        if (this.wormList.size() < 300) {
+            for (int x = this.wormList.size(); x <= 10; x++) {
+                addWorm(new Worm(random.nextInt(10), idGen));
+            }
+        }
+    }
+
+    public void replenishCells() {
         if (this.CellList.size() < 50) {
             for (int x = this.CellList.size(); x <= 50; x++) {
                 /*
@@ -2172,12 +2186,6 @@ public class Environment {
                 addCell(temp2);
             }
         }
-        if (this.wormList.size() < 300) {
-            for (int x = this.wormList.size(); x <= 10; x++) {
-                addWorm(new Worm(random.nextInt(10), idGen));
-            }
-        }
-
     }
 
     public void killAll() {

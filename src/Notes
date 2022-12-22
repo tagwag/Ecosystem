@@ -3,4 +3,3 @@ Changes
     True cells cannot see and store sight data like food direction.
     Cells will literally bump into each other and eat each other if their diet includes meat. But they don't hunt.
     cells have orientation  so I will need to implement such a thing.
-    

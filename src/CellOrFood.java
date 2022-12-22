@@ -483,7 +483,7 @@ public class CellOrFood extends Canvas implements Runnable {
             }
 
             for (int x = 0; x < Constants.squidSpawnAmount; x++) {
-                world.addSquid(new Squid(random.nextInt(5) + 2, 7, this.idGen));
+                //world.addSquid(new Squid(random.nextInt(5) + 2, 7, this.idGen));
             }
             for (int j = 0; j < Constants.foodBoxSpawnAmount; j++) {
                 world.addFood(new Food(idGen));
